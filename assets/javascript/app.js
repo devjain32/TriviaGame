@@ -58,6 +58,28 @@ var questions = [
         Correct: "Sprinkles"
     }
 ]
+var wrongArr = ["https://media1.giphy.com/media/Kb6kc5mReZ7iM/giphy.gif",
+"https://thumbs.gfycat.com/EmbellishedVigorousHumpbackwhale-size_restricted.gif",
+"https://media1.tenor.com/images/adc8b2d39eaba68f538815e51afd5e81/tenor.gif?itemid=7928528",
+"https://media1.tenor.com/images/3e061c6f76299c674741607827a3874f/tenor.gif?itemid=11650243",
+"https://media.giphy.com/media/goQ4bc8X0Lh6w/giphy.gif",
+"https://media2.giphy.com/media/ORgroFzBJxdGU/giphy.gif",
+"https://assets.rebelmouse.io/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbWFnZSI6Imh0dHBzOi8vbWVkaWEucmJsLm1zL2ltYWdlP3U9JTJGZmlsZXMlMkYyMDE3JTJGMDMlMkYwNyUyRjYzNjI0NTA3MzU5OTAwMzY5Ni04MTk0MDM3MzBfc291cmNlLmdpZiZhbXA7aG89aHR0cHMlM0ElMkYlMkZhejYxNjU3OC52by5tc2VjbmQubmV0JmFtcDtzPTE3NCZhbXA7aD04YjExNzE0ZmJjYzU2ODcxZjI2NmU3YzI5MWE4Njk3ZjNkYTM5YjQ4NGQ3NGNhNmJkNGVjOWFkNDY3NWNkNzllJmFtcDtzaXplPTk4MHgmYW1wO2M9NTIwNjExODY1IiwiZXhwaXJlc19hdCI6MTU2MDAwNTcxN30.mcZj8zbHAS1k7Q2Zo3LTIdjK71DyHeOJT-eSymeKZrQ/img.jpg",
+"https://assets.rebelmouse.io/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbWFnZSI6Imh0dHBzOi8vbWVkaWEucmJsLm1zL2ltYWdlP3U9JTJGZmlsZXMlMkYyMDE2JTJGMTIlMkYyNiUyRjYzNjE4MzkxMzg0MDUwMTU1MS0xNzE3NTk2NDQ2X2dpcGh5LmdpZiZhbXA7aG89aHR0cHMlM0ElMkYlMkZhejYxNjU3OC52by5tc2VjbmQubmV0JmFtcDtzPTY5OSZhbXA7aD1kZjU3N2I3ODMyOTc1ODFkZTc1YjY5NGIzNWZiZTE5ZGM1YTIyMjFhNWFmMjY4YmVmNmRlY2QwMTg5OTU5ZDdiJmFtcDtzaXplPTk4MHgmYW1wO2M9NjczOTg5MjQ0IiwiZXhwaXJlc19hdCI6MTU2MDE4MDQ2MX0.6KYwJSd8URIRWX6ER0D-PtCVBC3CJDUL5BryT_FzSPk/img.jpg",
+"https://media.giphy.com/media/YLgIOmtIMUACY/giphy.gif",
+"https://media1.popsugar-assets.com/files/thumbor/Dk--qOx0X8KWPkPtjpVQkyjokZc/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2019/04/26/838/n/1922283/111c78eb5cc356f120aa86.53314076_angela/i/Saddest-Moment-Show-History.gif"
+]
+var rightArr = ["https://thumbs.gfycat.com/WellinformedCostlyDassie-size_restricted.gif",
+"https://media.giphy.com/media/tlGD7PDy1w8fK/giphy.gif",
+"https://media.tenor.com/images/e602ebebfb77085ab2a947848d7c872d/tenor.gif",
+"https://i.imgur.com/5rZO8sd.gif?noredirect",
+"https://media.giphy.com/media/eGwW26RL3PknC/giphy.gif",
+"http://25.media.tumblr.com/ce8e6ed66c75f26a7682f2fc6504455f/tumblr_n1pp02VelT1sgwn46o1_400.gif",
+"https://media.giphy.com/media/nGzeO4uSxRUcg/giphy.gif",
+"https://media.giphy.com/media/FqHvakENy6Oe4/giphy.gif",
+"https://media.giphy.com/media/SMKhJW9JvhY08/giphy.gif",
+"https://thumbs.gfycat.com/GlossyHauntingDoe-small.gif"
+]
 
 $(".button-container").hide();
 $(".timer").hide();
@@ -81,7 +103,7 @@ function nextQuestion() {
     $(".gif").hide();
     $(".button-container").show();
     $(".click").show();
-    if (triviaCounter > questions.length) {
+    if (triviaCounter === questions.length) {
         finalScreen();
     }
     else {
@@ -104,7 +126,6 @@ function questionChecker(x) {
         answersNotAnswered++;
     }
     middlePage(x);
-    // nextQuestion();
 
 }
 
@@ -165,14 +186,25 @@ function checker() {
 }
 
 function showQuestion() {
-    $(".click").html("<h4>" + questions[triviaCounter].Question + "</h4>");
-    $("#answer1").text(questions[triviaCounter].Answers[0]);
-    $("#answer2").text(questions[triviaCounter].Answers[1]);
-    $("#answer3").text(questions[triviaCounter].Answers[2]);
-    console.log("in showQuestion");
+    // $(".click").html("<h4>" + questions[triviaCounter].Question + "</h4>");
+    if(triviaCounter === questions.length ) {
+        finalScreen();
+    } else {
+        $(".click").html("<h4>" + questions[triviaCounter].Question + "</h4>");
+        $("#answer1").text(questions[triviaCounter].Answers[0]);
+        $("#answer2").text(questions[triviaCounter].Answers[1]);
+        $("#answer3").text(questions[triviaCounter].Answers[2]);
+    }
 }
 
 function finalScreen() {
+    $(".timer").hide();
+    $(".result").show();
+    $(".gif").show();
+    $(".button-container").hide();
+    $(".click").show();
+    $(".click").html("<button class='resetBtn'>Click here to play again!</button>");
+    $(".resetBtn").on("click", restart);
     if (answersRight === questions.length) {
         $(".result").html("<h4>You're a pro! You got all of the questions correct!!</h4>");
     }
@@ -190,15 +222,42 @@ function middlePage(x) {
     $(".result").show();
     if (x === "incorrect") {
         $(".result").html("<h4>Incorrect</h4>");
-        $(".gif").html('<img src="https://thumbs.gfycat.com/EmbellishedVigorousHumpbackwhale-size_restricted.gif" alt="Crying Dwight">');
+        var imgTag = $("<img>");
+        imgTag.attr("src", wrongArr[answersWrong - 1]);
+        // $(".gif").html('<img src=' + wrongArr[answersWrong - 1] + 'alt="Incorrect">');
+        $(".gif").html(imgTag);
+        
     }
     else if (x === "correct") {
         $(".result").html("<h4>Correct</h4>");
-        $(".gif").html('<img src="https://media.giphy.com/media/tlGD7PDy1w8fK/giphy.gif" alt="Happy Michael">');
+        var imgTag = $("<img>");
+        imgTag.attr("src", rightArr[answersRight - 1]);
+        // $(".gif").html('<img src=' + rightArr[answersWrong - 1] + 'alt="Correct">');
+        $(".gif").html(imgTag);
     }
     else if (x === "not") {
         $(".result").html("<h4>You didn't answer!</h4>");
         $(".gif").html('<img src="https://media2.giphy.com/media/k7LLy1bE7aIgg/giphy.gif" alt="Happy Michael">');
     }
     runMiddle();
+}
+
+function restart() {
+    console.log("restarted")
+    $(".button-container").show();
+    $(".timer").show();
+    $("#start").hide();
+    $(".gif").hide();
+    $(".result").hide();
+    triviaCounter = 0;
+    answersRight = 0;
+    answersWrong = 0;
+    answersNotAnswered = 0;
+    timerCounter = 30;
+    timerCounterMP = 5;
+    running = false;
+    selections = [];
+    nextQuestion();
+    run();
+    clearInterval(intervalId);
 }
